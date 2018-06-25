@@ -4,6 +4,20 @@ let restaurants,
 var newMap
 var markers = []
 
+// Create service worker for caching
+let restaurantWorker = function(){
+  if(!navigator.serviceWorker) return;
+  navigator.serviceWorker.register('sw.js')
+  .then(function() {
+  console.log("Reg worked");
+  })
+  .catch(function() {
+  console.log('Reg failed');
+  })
+}
+
+restaurantWorker();
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -36,6 +50,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
+    option.setAttribute("role", "option");
     select.append(option);
   });
 }
@@ -78,7 +93,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: '<your MAPBOX API KEY HERE>',
+    mapboxToken: 'pk.eyJ1IjoiZmx5aW5nZGFkIiwiYSI6ImNqaW0yeHBmeTAzeGEzcWtocnZ1bHFpOWkifQ.CcFShcO9N7tjF8KkCZAz0w',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -161,6 +176,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt =  restaurant.name + ' Image';
   li.append(image);
 
   const name = document.createElement('h1');
@@ -177,6 +193,8 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+  more.setAttribute('title', restaurant.name);
+  more.setAttribute('aria-label', 'view details');
   more.href = DBHelper.urlForRestaurant(restaurant);
   li.append(more)
 

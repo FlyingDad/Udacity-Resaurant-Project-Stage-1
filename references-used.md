@@ -1,0 +1,1 @@
+Mozilla: The Service Worker Cookbook - Caching strategies [Cache, update and refresh](https://serviceworke.rs/strategy-cache-update-and-refresh_service-worker_doc.html)
