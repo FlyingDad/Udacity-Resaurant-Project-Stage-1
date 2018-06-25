@@ -5,18 +5,28 @@ var newMap
 var markers = []
 
 // Create service worker for caching
-let restaurantWorker = function(){
-  if(!navigator.serviceWorker) return;
-  navigator.serviceWorker.register('sw.js')
-  .then(function() {
-  console.log("Reg worked");
-  })
-  .catch(function() {
-  console.log('Reg failed');
-  })
+// let restaurantWorker = function(){
+//   if(!navigator.serviceWorker) return;
+//   navigator.serviceWorker.register('sw.js')
+//   .then(function() {
+//   console.log("Reg worked");
+//   })
+//   .catch(function() {
+//   console.log('Reg failed');
+//   })
+// }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
 }
-
-restaurantWorker();
+// restaurantWorker();
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
