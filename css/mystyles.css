@@ -106,6 +106,32 @@ nav h1 a {
   width: 100%;
   background-color: #ccc;
 }
+
+/* ====================== Neigborhood Select ====================== */
+
+[role="option"] {
+	display: block;
+	padding: 0 1em;
+	position: relative;
+	line-height: 1.8em;
+}
+
+[role="option"].focused {
+	background: #bde4ff;
+}
+
+[role="option"][aria-selected] {
+	padding-left: 1.5em;
+}
+
+[role="option"][aria-selected="true"]::before {
+	content: '✓';
+	position: absolute;
+	left: 0.5em;
+}
+
+
+
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
