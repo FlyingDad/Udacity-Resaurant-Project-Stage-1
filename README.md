@@ -9,7 +9,6 @@
 
 ## Requirements
 Browser capable of running ECMAScript 6 (ES6)
-## Specification
 
 ## Dependencies  
 - Google [Normalize Stylesheet](https://normalize-css.googlecode.com/svn/trunk/normalize.css) 
