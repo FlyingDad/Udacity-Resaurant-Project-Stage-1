@@ -3,8 +3,8 @@
 let restaurants,
   neighborhoods,
   cuisines;
-var newMap;
-var markers = [];
+let newMap;
+let markers = [];
 
 // Create service worker for caching
 if ('serviceWorker' in navigator) {

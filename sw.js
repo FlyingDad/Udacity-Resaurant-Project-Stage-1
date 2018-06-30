@@ -5,6 +5,8 @@ const CACHE = 'restaurant-v1';
 
 let urlsToCache = [
         '/',
+        'index.html',
+        'restaurant.html',
         'css/styles.css',
         'js/main.js',
         'js/dbhelper.js',

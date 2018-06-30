@@ -1,6 +1,6 @@
 // jshint esversion: 6
 let restaurant;
-var newMap;
+let newMap;
 
 /**
  * Initialize map as soon as the page is loaded.
